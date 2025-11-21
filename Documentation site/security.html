@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Security Monitoring - 29019 Project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="wrap" role="main">
+      <div class="card" aria-label="Main Navigation">
+        <h2>Navigation</h2>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="windows.html">Windows Server</a></li>
+            <li><a href="linux.html">Linux Server</a></li>
+            <li><a href="pfsense.html">pfSense Firewall</a></li>
+            <li><a href="vpn.html">VPN (OpenVPN)</a></li>
+            <li>
+              <a href="security.html" class="active">Security Monitoring</a>
+            </li>
+            <li><a href="backup.html">Backup & Restore</a></li>
+            <li><a href="testing.html">Testing</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <section class="panel" aria-labelledby="page-title">
+        <h1 id="page-title">Wazuh Manager (SIEM) and IDS Integration</h1>
+        <p>
+          This section provides evidence for Task 4 (Wazuh deployment, logging,
+          and FIM) and Task 5 (Suricata IDS integration and custom detection
+          rules).
+        </p>
+
+        <hr />
+
+        <h2>1. Wazuh Manager Setup and Agents</h2>
+
+        <h3>Wazuh Login Screen</h3>
+        <p>
+          The login screen for the Wazuh manager interface, confirming the
+          successful deployment of the OVA (4.14.0) and web access.
+        </p>
+        <img
+          src="./images/wazuh_login.png"
+          alt="Wazuh Manager web interface login screen."
+          class="evidence"
+        />
+
+        <h3>Agent Status and Connectivity</h3>
+        <p>
+          The Agents tab confirms all required endpoints are enrolled and
+          active: the Domain Controller, Linux Documentation Server, and client
+          PCs. This centralized monitoring is key.
+        </p>
+        <img
+          src="./images/wazuh_agents_list.png"
+          alt="Wazuh Agents list showing all enrolled VMs are active."
+          class="evidence"
+        />
+
+        <h3>Log Ingestion Verification</h3>
+        <p>
+          The dashboard view shows incoming logs, including Windows Events and
+          syslogs forwarded from pfSense, confirming the successful ingestion of
+          security data from all network devices.
+        </p>
+        <img
+          src="./images/wazuh_dashboard_logs.png"
+          alt="Wazuh dashboard showing a high number of ingested logs from various agents."
+          class="evidence"
+        />
+
+        <hr />
+
+        <h2>2. File Integrity Monitoring (FIM)</h2>
+
+        <h3>FIM Configuration for AD/GPO Paths</h3>
+        <p>
+          Evidence of the `ossec.conf` file snippet or the manager configuration
+          confirming the monitoring of critical paths, specifically the
+          network-mapped drives and roaming profile folders (e.g.,
+          `\\fileserver\roaming\...`).
+        </p>
+        <img
+          src="./images/wazuh_fim_ad.png"
+          alt="Wazuh FIM configuration settings showing monitored paths for Windows server and network shares."
+          class="evidence"
+        />
+
+        <h3>FIM Alert Triggered</h3>
+        <p>
+          A controlled test demonstrates the FIM service working: a file was
+          modified in a monitored network share, generating a high-severity
+          alert in the Wazuh console.
+        </p>
+        <img
+          src="./images/wazuh_fim_alerts.png"
+          alt="Wazuh alert detail showing a File Integrity Monitoring event triggered by file modification."
+          class="evidence"
+        />
+
+        <hr />
+
+        <h2>3. IDS and Custom Rules</h2>
+
+        <h3>Custom Local Rules</h3>
+        <p>
+          The custom rules file (`local_rules.xml`) includes the
+          student-ID-specific rules, such as `StudentID_BruteForce_Windows` and
+          `StudentID_Scan_Network`, designed to correlate alerts and adjust
+          severity.
+        </p>
+        <img
+          src="./images/wazuh_local_rules.png"
+          alt="Wazuh manager view of the local_rules.xml file containing custom detection rules."
+          class="evidence"
+        />
+
+        <h3>Suricata/IDS Alert (Correlation Proof)</h3>
+        <p>
+          This evidence (often a duplicate of an earlier Kali test screenshot,
+          but included here for context) shows a Suricata (IDS) alert correlated
+          and presented in the Wazuh dashboard, proving successful EVE JSON
+          ingestion and detection capabilities.
+        </p>
+        <img
+          src="./images/wazuh_fim_alerts.png"
+          alt="Wazuh alert showing a Suricata signature alert triggered during the Kali test."
+          class="evidence"
+        />
+      </section>
+    </main>
+  </body>
+</html>

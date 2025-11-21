@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VPN - 29019 Project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="wrap" role="main">
+      <div class="card" aria-label="Main Navigation">
+        <h2>Navigation</h2>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="windows.html">Windows Server</a></li>
+            <li><a href="linux.html">Linux Server</a></li>
+            <li><a href="pfsense.html">pfSense Firewall</a></li>
+            <li><a href="vpn.html" class="active">VPN (OpenVPN)</a></li>
+            <li><a href="security.html">Security Monitoring</a></li>
+            <li><a href="backup.html">Backup & Restore</a></li>
+            <li><a href="testing.html">Testing</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <section class="panel" aria-labelledby="page-title">
+        <h1 id="page-title">VPN (OpenVPN)</h1>
+        <p>Evidence for Task 7.</p>
+
+        <h2>Server Configuration</h2>
+        <p>
+          Screenshot of the OpenVPN server settings, including the certificate
+          named `29019-IT-Cert`.
+        </p>
+        <img
+          src="vpn-server-config.png"
+          alt="OpenVPN Server Config"
+          class="evidence"
+        />
+        <p>
+          Screenshot of the firewall rule on the `OpenVPN` tab, allowing clients
+          to access the LANs.
+        </p>
+        <img
+          src="vpn-firewall-rule.png"
+          alt="OpenVPN Firewall Rule"
+          class="evidence"
+        />
+
+        <h2>Connection Test</h2>
+        <p>Screenshot of the Windows 10 VPN client successfully connected.</p>
+        <img src="vpn-client-connected.png" alt="VPN Client" class="evidence" />
+        <p>
+          Screenshot of the connected client successfully pinging the AD Server
+          at `192.168.1.2`.
+        </p>
+        <img src="vpn-ping-test.png" alt="VPN Ping Test" class="evidence" />
+      </section>
+    </main>
+  </body>
+</html>

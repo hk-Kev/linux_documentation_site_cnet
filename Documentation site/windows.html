@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Windows Server - 29019 Project</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="wrap" role="main">
+      <div class="card" aria-label="Main Navigation">
+        <h2>Navigation</h2>
+
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="windows.html" class="active">Windows Server</a></li>
+
+            <li><a href="linux.html">Linux Server</a></li>
+
+            <li><a href="pfsense.html">pfSense Firewall</a></li>
+
+            <li><a href="vpn.html">VPN (OpenVPN)</a></li>
+
+            <li><a href="security.html">Security Monitoring</a></li>
+
+            <li><a href="backup.html">Backup & Restore</a></li>
+
+            <li><a href="testing.html">Testing</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <section class="panel" aria-labelledby="page-title">
+        <h1 id="page-title">Windows Server (Active Directory, GPO, IIS)</h1>
+
+        <p>
+          This section provides evidence for Task 2, covering the Domain
+          Controller installation, DNS configuration, Group Policy
+          implementation, and the IIS web portfolio site.
+        </p>
+
+        <hr />
+
+        <h2>1. Active Directory and DNS Setup</h2>
+
+        <h3>Organizational Units (OUs) and Users</h3>
+
+        <p>
+          The Active Directory Users and Computers (ADUC) console view confirms
+          the creation of required OUs (IT, HR, Students, Finance) and the
+          sample user accounts within them, following the naming convention.
+        </p>
+
+        <img
+          src="./images/ad_OUs_users.png"
+          alt="ADUC console showing all OUs and sample users created."
+          class="evidence"
+        />
+
+        <h3>DNS Records Verification</h3>
+
+        <p>
+          The Domain Name System (DNS) server configuration confirms the forward
+          lookup zone for the `StudentID.f25` domain and the necessary host
+          records for the DC and other services.
+        </p>
+
+        <img
+          src="./images/ad_dns_records.png"
+          alt="DNS Manager console showing the forward lookup zone and records for the domain."
+          class="evidence"
+        />
+
+        <hr />
+
+        <h2>2. Group Policy Objects (GPO) Implementation</h2>
+
+        <h3>GPO Management List</h3>
+
+        <p>
+          The Group Policy Management console displays all custom GPOs created
+          to enforce central policies across the domain. These include:
+        </p>
+        <ul>
+          <li>GPO_29019_Password_Policy</li>
+
+          <li>GPO_29019_Roaming</li>
+
+          <li>GPO_29019_MappedDrives</li>
+
+          <li>GPO_29019_SoftwareDeploy (Not pictured, but included in list)</li>
+        </ul>
+
+        <img
+          src="./images/ad_gpo_list.png"
+          alt="Group Policy Management console listing all custom GPOs."
+          class="evidence"
+        />
+
+        <h3>Password Policy Enforcement</h3>
+
+        <p>
+          The password policy settings are configured to meet strict security
+          requirements (minimum 12 characters, history of 5, and account lockout
+          after 3 failed attempts).
+        </p>
+
+        <img
+          src="./images/ad_password_policy.png"
+          alt="GPO settings for the domain's strict password policy."
+          class="evidence"
+        />
+
+        <h3>Roaming Profiles Path</h3>
+
+        <p>
+          The Roaming Profile GPO settings showing the exact path pointing to
+          the centralized Samba share hosted on the Linux Server
+          (\\LS-StudentID\roaming\StudentID\%username%).
+        </p>
+
+        <img
+          src="./images/ad_roaming_profiles.png"
+          alt="GPO configuration for the roaming profiles shared folder path."
+          class="evidence"
+        />
+
+        <h3>Client Verification (gpresult)</h3>
+
+        <p>
+          The output of the `gpresult /r` command run on the Windows client PC
+          (PC1) proves that the custom GPOs, including the Roaming profile and
+          Mapped Drives policies, have been successfully applied.
+        </p>
+
+        <img
+          src="./images/ad_gpresult.png"
+          alt="Command output showing applied GPOs on a domain client."
+          class="evidence"
+        />
+
+        <h3>Client Verification (Mapped Drive)</h3>
+
+        <p>
+          A screenshot from the client PC (PC1) verifying that the GPO
+          successfully mapped the centralized shared drive (e.g., Z:) to the
+          Linux Samba share location.
+        </p>
+
+        <img
+          src="./images/ad_pc1_29019_mapped_drive.png"
+          alt="File Explorer view on PC1 showing the successfully mapped network drive."
+          class="evidence"
+        />
+
+        <hr />
+
+        <h2>3. IIS Web Portfolio Site</h2>
+
+        <h3>Portfolio Site Display</h3>
+
+        <p>
+          The personal portfolio site, hosted on the Windows Server's IIS role,
+          is displayed. This serves as a public-facing service and confirms
+          successful web server setup and network accessibility.
+        </p>
+
+        <img
+          src="./images/ad_portfolio_website.png"
+          alt="Browser view of the IIS-hosted portfolio site showing student details."
+          class="evidence"
+        />
+      </section>
+    </main>
+  </body>
+</html>
