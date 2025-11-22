@@ -27,7 +27,7 @@
 
             <li><a href="vpn.html">VPN (OpenVPN)</a></li>
 
-            <li><a href="security.html">Security Monitoring</a></li>
+            <li><a href="wazuh.html">Wazuh Server</a></li>
 
             <li><a href="backup.html">Backup & Restore</a></li>
 
@@ -52,9 +52,9 @@
         <h3>Interface Assignments</h3>
 
         <p>
-          This evidence shows the assignment of interfaces: WAN (Public/NAT),
-          LAN1 (192.168.1.1/29), and LAN2 (192.168.2.1/29). Each segment is
-          correctly isolated.
+          This evidence shows the assignment of interfaces: WAN (Public/NAT)
+          (10.0.2.0/24), LAN1 (192.168.1.1/29), and LAN2 (192.168.2.1/29). Each
+          segment is correctly isolated.
         </p>
 
         <img
@@ -66,7 +66,7 @@
         <h3>DHCP Configuration</h3>
 
         <p>
-          pfSense is configured to provide DHCP service *only* to the LAN2
+          pfSense is configured to provide DHCP service only to the LAN2
           segment, fulfilling the requirement for split DHCP responsibility
           (Linux Server handles LAN1).
         </p>
@@ -95,9 +95,8 @@
         <h3>Custom Schedule Evidence</h3>
 
         <p>
-          The custom schedules for `KaliPentest_StudentID` and
-          `LAN2_NoSocial_StudentID` define the exact time windows for enforcing
-          access policies.
+          The custom schedules for "KaliPentest_29019" and "LAN2_NoSocial_29019"
+          define the exact time windows for enforcing access policies.
         </p>
 
         <img
@@ -109,9 +108,14 @@
         <h3>WAN Rules (Kali Access)</h3>
 
         <p>
-          The WAN rules, including the schedule-enforced `KaliPentest_StudentID`
+          The WAN rules, including the schedule-enforced "KaliPentest_29019"
           rule, permit external Kali traffic into the internal networks only
-          during the defined one-hour window.
+          during the defined one-hour window. 
+          <p>First rule is for openVPN</p>
+          <p>Second rule is for allowing pentest for kali VM</p>
+          <p>Last rule to allow pinging.</p>
+
+
         </p>
 
         <img
@@ -123,7 +127,7 @@
         <h3>LAN1 Rules (Inter-LAN and Web Access)</h3>
 
         <p>
-          LAN1 rules include `ALLOW_StudentID_LAN1_TO_LAN2` for bi-directional
+          LAN1 rules include "ALLOW_29019_LAN1_TO_LAN2" for bi-directional
           access and general rules allowing access to hosted web pages (IIS and
           Documentation Server).
         </p>
@@ -137,8 +141,8 @@
         <h3>LAN2 Rules (Scheduled Block)</h3>
 
         <p>
-          The scheduled `LAN2_NoSocial_StudentID` rule is shown enforcing the
-          social media block policy during the mandated office hours.
+          The scheduled "LAN2_NoSocial_29019" rule is shown enforcing the
+          social media block policy during the office hours.
         </p>
 
         <img

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Security Monitoring - 29019 Project</title>
+    <title>Wazuh Server - 29019 Project</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -18,7 +18,7 @@
             <li><a href="pfsense.html">pfSense Firewall</a></li>
             <li><a href="vpn.html">VPN (OpenVPN)</a></li>
             <li>
-              <a href="security.html" class="active">Security Monitoring</a>
+              <a href="wazuh.html" class="active">Wazuh Server</a>
             </li>
             <li><a href="backup.html">Backup & Restore</a></li>
             <li><a href="testing.html">Testing</a></li>
@@ -41,7 +41,8 @@
         <h3>Wazuh Login Screen</h3>
         <p>
           The login screen for the Wazuh manager interface, confirming the
-          successful deployment of the OVA (4.14.0) and web access.
+          successful deployment of the OVA (4.14.0) and web access. As well
+          showing the change of hostname to my studentID as instructed.
         </p>
         <img
           src="./images/wazuh_login.png"
@@ -51,9 +52,9 @@
 
         <h3>Agent Status and Connectivity</h3>
         <p>
-          The Agents tab confirms all required endpoints are enrolled and
-          active: the Domain Controller, Linux Documentation Server, and client
-          PCs. This centralized monitoring is key.
+          The Agents tab confirms all agents created are enrolled and active.
+          AS_Agent for windows server, and Agent1-29019 for Linux Documentation
+          Server.
         </p>
         <img
           src="./images/wazuh_agents_list.png"
@@ -77,24 +78,10 @@
 
         <h2>2. File Integrity Monitoring (FIM)</h2>
 
-        <h3>FIM Configuration for AD/GPO Paths</h3>
-        <p>
-          Evidence of the `ossec.conf` file snippet or the manager configuration
-          confirming the monitoring of critical paths, specifically the
-          network-mapped drives and roaming profile folders (e.g.,
-          `\\fileserver\roaming\...`).
-        </p>
-        <img
-          src="./images/wazuh_fim_ad.png"
-          alt="Wazuh FIM configuration settings showing monitored paths for Windows server and network shares."
-          class="evidence"
-        />
-
         <h3>FIM Alert Triggered</h3>
         <p>
-          A controlled test demonstrates the FIM service working: a file was
-          modified in a monitored network share, generating a high-severity
-          alert in the Wazuh console.
+          A controlled test demonstrates the FIM service working, a file was
+          modified generating alerts in the Wazuh console.
         </p>
         <img
           src="./images/wazuh_fim_alerts.png"
@@ -108,27 +95,13 @@
 
         <h3>Custom Local Rules</h3>
         <p>
-          The custom rules file (`local_rules.xml`) includes the
-          student-ID-specific rules, such as `StudentID_BruteForce_Windows` and
-          `StudentID_Scan_Network`, designed to correlate alerts and adjust
-          severity.
+          The custom rules file (`local_rules.xml`) includes the specific rules,
+          such as `29019_BruteForce_Windows` and `29019_Scan_Network`, designed
+          to correlate alerts and adjust severity.
         </p>
         <img
           src="./images/wazuh_local_rules.png"
           alt="Wazuh manager view of the local_rules.xml file containing custom detection rules."
-          class="evidence"
-        />
-
-        <h3>Suricata/IDS Alert (Correlation Proof)</h3>
-        <p>
-          This evidence (often a duplicate of an earlier Kali test screenshot,
-          but included here for context) shows a Suricata (IDS) alert correlated
-          and presented in the Wazuh dashboard, proving successful EVE JSON
-          ingestion and detection capabilities.
-        </p>
-        <img
-          src="./images/wazuh_fim_alerts.png"
-          alt="Wazuh alert showing a Suricata signature alert triggered during the Kali test."
           class="evidence"
         />
       </section>

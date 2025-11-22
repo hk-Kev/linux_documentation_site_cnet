@@ -2,14 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-
     <title>Windows Server - 29019 Project</title>
-
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
     <main class="wrap" role="main">
       <div class="card" aria-label="Main Navigation">
@@ -18,7 +14,6 @@
         <nav class="nav-menu">
           <ul>
             <li><a href="index.html">Home</a></li>
-
             <li><a href="windows.html" class="active">Windows Server</a></li>
 
             <li><a href="linux.html">Linux Server</a></li>
@@ -27,7 +22,7 @@
 
             <li><a href="vpn.html">VPN (OpenVPN)</a></li>
 
-            <li><a href="security.html">Security Monitoring</a></li>
+            <li><a href="wazuh.html">Wazuh Server</a></li>
 
             <li><a href="backup.html">Backup & Restore</a></li>
 
@@ -53,8 +48,9 @@
 
         <p>
           The Active Directory Users and Computers (ADUC) console view confirms
-          the creation of required OUs (IT, HR, Students, Finance) and the
-          sample user accounts within them, following the naming convention.
+          the creation of required OUs (IT, HR, Students, Finance) and their
+          respective user accounts within them, following the naming convention.
+          As well the computers, which joined the "29019.f25" domain.
         </p>
 
         <img
@@ -67,8 +63,9 @@
 
         <p>
           The Domain Name System (DNS) server configuration confirms the forward
-          lookup zone for the `StudentID.f25` domain and the necessary host
-          records for the DC and other services.
+          lookup zone for the "29019.f25" domain and the necessary host records
+          for the DC and other services. As well showcasing their ip address,
+          either dynamically or statically.
         </p>
 
         <img
@@ -94,7 +91,8 @@
 
           <li>GPO_29019_MappedDrives</li>
 
-          <li>GPO_29019_SoftwareDeploy (Not pictured, but included in list)</li>
+          <li>GPO_29019_SoftwareDeploy</li>
+          <li>GPO_29019_NTP</li>
         </ul>
 
         <img
@@ -108,7 +106,8 @@
         <p>
           The password policy settings are configured to meet strict security
           requirements (minimum 12 characters, history of 5, and account lockout
-          after 3 failed attempts).
+          after 3 failed attempts). Also enforcing password complexity, password
+          history, and minimum password length.
         </p>
 
         <img
@@ -120,9 +119,12 @@
         <h3>Roaming Profiles Path</h3>
 
         <p>
-          The Roaming Profile GPO settings showing the exact path pointing to
-          the centralized Samba share hosted on the Linux Server
-          (\\LS-StudentID\roaming\StudentID\%username%).
+          This screenshot shows the File Explorer on the Domain Controller
+          (AD-29019), specifically withn the specified path C:\roaming\29019. It
+          displays a user profile folder named "Fin1.V2", "HR1.V2", "IT1.V2",
+          and "Stud1.V2", which was automatically generated and synchronized
+          when the user logs onto the machine. Thus verifying the roaming
+          profile (GPO) is successfully.
         </p>
 
         <img
@@ -134,9 +136,13 @@
         <h3>Client Verification (gpresult)</h3>
 
         <p>
-          The output of the `gpresult /r` command run on the Windows client PC
-          (PC1) proves that the custom GPOs, including the Roaming profile and
-          Mapped Drives policies, have been successfully applied.
+          This screenshot captures the output of the "gpresult /r" command,
+          which was executed on the client machine (PC1-29019) with
+          Administrator privileges. Running the command this way forces the
+          system to display both the User Settings and the Computer Settings.
+          This is critical evidence that proves all GPOs are successfully linked
+          and applied to both the user (for Mapped Drives, Roaming Profiles, and
+          Software) and the computer (for Password Policy and NTP settings).
         </p>
 
         <img
@@ -149,8 +155,7 @@
 
         <p>
           A screenshot from the client PC (PC1) verifying that the GPO
-          successfully mapped the centralized shared drive (e.g., Z:) to the
-          Linux Samba share location.
+          successfully mapped the centralized shared drive to this Computer.
         </p>
 
         <img
